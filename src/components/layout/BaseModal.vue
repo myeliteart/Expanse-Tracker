@@ -30,7 +30,7 @@
         z-index: 10;
     }
       dialog {
-        position: fixed;
+        position: absolute;
         top: 30%;
         left: 0%;
         width: 30%;
