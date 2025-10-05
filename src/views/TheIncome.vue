@@ -5,7 +5,7 @@
       <p v-if="!store.incomeHistory.length" class="text-center pt-10">Income History is currently empty</p>
       <ul class="" v-if="store.incomeHistory.length">
          <li v-for="income in store.incomeHistory" :key="income.id" class="flex justify-between items-center py-4 border-b border-gray-400 text-1xl content-center">
-            <span class="wrap-break-word text-1xl font-medium grow max-w-32 md:max-w-64">{{ income.description }}</span>
+            <span class="wrap-break-word text-1xl font-medium grow max-w-28 md:max-w-64">{{ income.description }}</span>
             <base-button v-if="income.cat" class="lg:grow-0" :mode="income.cat == 'Work' ? 'btnWork' : income.cat == 'Rent' ? 'btnRent' : income.cat == 'Food' ? 'btnFood' : income.cat == 'Other' ? 'btnOther' : ''">{{ income.cat }}</base-button>
             <span class="text-1xl font-medium">${{ income.amount.toFixed(2) }}</span>
             <span class="cursor-pointer hidden lg:block">

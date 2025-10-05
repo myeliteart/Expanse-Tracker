@@ -4,7 +4,7 @@
          <p v-if="!store.expanseHistory.length" class="text-center pt-10">Expanse History is currently empty</p>
    <ul class="">
       <li v-for="(expanse, index) in store.expanseHistory" :key="expanse" class="flex justify-between items-center py-4 border-b border-gray-400 text-1xl content-center">
-          <span class="wrap-break-word text-1xl font-medium grow max-w-32 md:max-w-64">{{ expanse.description }}</span>
+          <span class="wrap-break-word text-1xl font-medium grow max-w-28 md:max-w-64">{{ expanse.description }}</span>
          <base-button :mode="expanse.cat == 'Work' ? 'btnWork' : expanse.cat == 'Rent' ? 'btnRent' : expanse.cat == 'Food' ? 'btnFood' : expanse.cat == 'Other' ? 'btnOther' : ''" v-if="expanse.cat" class="lg:grow-0">{{ expanse.cat }}</base-button>
           <span class="text-1xl font-medium">${{ expanse.amount.toFixed(2) }}</span>
          <span class="cursor-pointer hidden lg:block">
