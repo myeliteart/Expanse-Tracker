@@ -12,36 +12,15 @@
         </div>
         <div class="my-3">
             <label for="selectedOption">Category</label>
-            <Field v-model="store.selectedCatI" name="selectedOption" as="select" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0">
-                <option v-for="c in store.incomeFields.cat" :value="c.value">{{ c.text }}</option>
+            <Field v-model="store.selectedCatI" name="selectedOption" as="select" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0" :class="store.isDarkMode == false ? 'text-gray-800' : 'text-white'">
+                <option v-for="c in store.incomeFields.cat" :value="c.value" class="text-gray-800">{{ c.text }}</option>
             </Field>
             <small class="text-red-600"><ErrorMessage name="selectedOption" /></small>
         </div>
         <div class="mt-4">
-            <base-button type="submit" mode="btnActive" class="font-medium w-full cursor-pointer">Add Income</base-button>
+            <base-button type="submit" :mode="store.isDarkMode ==  false ? 'btnActive' : 'btnActiveDark'" class="font-medium w-full cursor-pointer">Add Income</base-button>
         </div>
    </Form>
-
-    <!-- <form class="text-left mt-4" @submit.prevent="store.increment">
-        <div>
-            <label>Income Description</label>
-            <input type="text" v-model.trim="store.incomeFields.description" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0">
-        </div>
-        <div class="my-3">
-            <label>Income Amount</label>
-            <input type="number" v-model.trim="store.incomeFields.amount" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0">
-        </div>
-       
-         <div>
-            <label>Categories</label>
-            <select v-model.trim="store.selectedCatI" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0">
-                <option v-for="c in store.incomeFields.cat" :value="c.value">{{ c.text }}</option>
-            </select>
-        </div>
-        <div class="mt-4">
-            <base-button type="submit" mode="btnActive" class="font-bold w-full cursor-pointer">Add Transaction</base-button>
-        </div>
-   </form> -->
 </template>
 
 <script setup>

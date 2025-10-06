@@ -78,7 +78,7 @@ export const useTransectionsStore = defineStore('transections', () => {
   const ExpModal = ref(null);
 
   const mobileActions = ref(null);
-
+  const isDarkMode = ref(false);
 
   // const filterNumericValue = (event) => {
   //    let value = event.target.value;
@@ -134,5 +134,9 @@ export const useTransectionsStore = defineStore('transections', () => {
   //   incomeFields.value.amount = parseFloat().toFixed(2);
   // })
 
-  return { balance, income, expanse, tabs, ExpModal, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, confirmDeletion2, incomeFields, navOpen, selectedCatE, modal, selectedCatI, expanseFields, incomeHistory, expanseHistory, deleteExpanse, deleteIncome, actions }
+  const toggleDark = () => {
+    isDarkMode.value = !isDarkMode.value
+  }
+
+  return { balance, income, toggleDark, isDarkMode, expanse, tabs, ExpModal, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, confirmDeletion2, incomeFields, navOpen, selectedCatE, modal, selectedCatI, expanseFields, incomeHistory, expanseHistory, deleteExpanse, deleteIncome, actions }
 })

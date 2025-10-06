@@ -12,13 +12,13 @@
         </div>
         <div class="my-3">
             <label for="selectedOption">Category</label>
-            <Field v-model="store.selectedCatE" name="selectedOption" as="select" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0">
-                <option v-for="c in store.expanseFields.cat" :value="c.value">{{ c.text }}</option>
+            <Field v-model="store.selectedCatE" name="selectedOption" as="select" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0" :class="store.isDarkMode == false ? 'text-gray-800' : 'text-white'">
+                <option v-for="c in store.expanseFields.cat" :value="c.value" class="text-gray-800">{{ c.text }}</option>
             </Field>
             <small class="text-red-600"><ErrorMessage name="catg" /></small>
         </div>
         <div class="mt-4">
-            <base-button type="submit" mode="btnActive" class="font-medium w-full cursor-pointer">Add Expanse</base-button>
+            <base-button type="submit"  :mode="store.isDarkMode ==  false ? 'btnActive' : 'btnActiveDark'" class="font-medium w-full cursor-pointer">Add Expanse</base-button>
         </div>
    </Form>
 </template>

@@ -9,8 +9,8 @@
             <base-button v-if="income.cat" class="lg:grow-0" :mode="income.cat == 'Work' ? 'btnWork' : income.cat == 'Rent' ? 'btnRent' : income.cat == 'Food' ? 'btnFood' : income.cat == 'Other' ? 'btnOther' : ''">{{ income.cat }}</base-button>
             <span class="text-1xl font-medium">${{ income.amount.toFixed(2) }}</span>
             <span class="cursor-pointer hidden lg:block">
-                  <font-awesome-icon @click="store.deleteIncome(income)" :icon="['fas', 'trash']" class="text-gray-500 mr-3 md:mr-6"></font-awesome-icon> 
-                  <font-awesome-icon  @click="store.editedIncome(income)" :icon="['fas', 'pencil']" class="text-gray-500"></font-awesome-icon> 
+                  <font-awesome-icon @click="store.deleteIncome(income)" :icon="['fas', 'trash']" class="mr-3 md:mr-6" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
+                  <font-awesome-icon  @click="store.editedIncome(income)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
             </span>
             <div class="cursor-pointer block lg:hidden">
                 <font-awesome-icon @click="store.actions(income)" :icon="['fas', 'ellipsis']" class="text-gray-500"></font-awesome-icon> 

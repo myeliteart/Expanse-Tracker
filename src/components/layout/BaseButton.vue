@@ -16,6 +16,15 @@
         border-radius: .3rem;
         font-weight: bold;
     }
+
+       .btnDark, .btnDark:hover {
+        background-color: transparent;
+        border: 1px solid #fff;
+        padding: 7px 13px;
+        border-radius: .3rem;
+        font-weight: bold;
+    }
+    
     .btnWork, .btnWork:hover {
         background-color: transparent;
         border: 1px solid #23aba2;
@@ -64,6 +73,23 @@
         background-color: #3a3a3a;
         border: 1px solid #3a3a3a;
         color: #ffb900;
+        padding: 7px 13px;
+        border-radius: .3rem;
+        font-weight: bold;
+    }
+
+     .btnActiveDark {
+        background-color: #ffb900;
+        border: 1px solid #ffb900;
+        color: #000;
+        padding: 7px 13px;
+        border-radius: .3rem;
+        font-weight: bold;
+    }
+    .btnActiveDark:hover {
+         background-color: #e3a909;
+        border: 1px solid #e3a909;
+        color: #000;
         padding: 7px 13px;
         border-radius: .3rem;
         font-weight: bold;

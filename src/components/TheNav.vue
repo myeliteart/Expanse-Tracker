@@ -1,9 +1,9 @@
 <template>
     
-  <nav class="bg-gray-800 text-white list-none">
+  <nav class="list-none" :class="store.isDarkMode == false ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'">
         <div class="flex flex-row justify-between items-center">
                 <router-link to="/" class="pt-4 pb-2 pl-6" @click="store.navOpen = false">
-                    <h2 class="text-2xl font-bold mb-2.5 text-amber-400">Expanse Tracker</h2>
+                    <h2 class="text-2xl font-bold mb-2.5" :class="store.isDarkMode == false ?  'text-amber-400' : 'text-gray-800'">Expanse Tracker</h2>
                 </router-link>
                 <div class="block sm:hidden">
                    <button v-if="!store.navOpen" @click="store.navOpen = !store.navOpen" class="pr-6 cursor-pointer">

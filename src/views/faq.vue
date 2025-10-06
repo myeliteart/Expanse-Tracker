@@ -1,6 +1,6 @@
 <template>
    <h1 class="text-3xl font-bold">Frequently asked Questions</h1>
-   <hr class="my-3 border-gray-400"></hr>     
+   <hr class="my-2 border-gray-400"></hr>     
 
     <div class="card">
         <Accordion value="0">

@@ -8,8 +8,8 @@
          <base-button :mode="expanse.cat == 'Work' ? 'btnWork' : expanse.cat == 'Rent' ? 'btnRent' : expanse.cat == 'Food' ? 'btnFood' : expanse.cat == 'Other' ? 'btnOther' : ''" v-if="expanse.cat" class="lg:grow-0">{{ expanse.cat }}</base-button>
           <span class="text-1xl font-medium">${{ expanse.amount.toFixed(2) }}</span>
          <span class="cursor-pointer hidden lg:block">
-             <font-awesome-icon @click="store.deleteExpanse(expanse)" :icon="['fas', 'trash']" class="text-gray-500 mr-3 md:mr-6"></font-awesome-icon> 
-             <font-awesome-icon  @click="store.editedExpanse(expanse)" :icon="['fas', 'pencil']" class="text-gray-500"></font-awesome-icon> 
+             <font-awesome-icon @click="store.deleteExpanse(expanse)" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'" :icon="['fas', 'trash']" class="mr-3 md:mr-6"></font-awesome-icon> 
+             <font-awesome-icon  @click="store.editedExpanse(expanse)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
         </span>
         <div class="cursor-pointer block lg:hidden">
                <font-awesome-icon @click="store.actions(expanse)" :icon="['fas', 'ellipsis']" class="text-gray-500"></font-awesome-icon> 
