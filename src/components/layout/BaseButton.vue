@@ -54,8 +54,8 @@
 
     .btnOther, .btnOther:hover {
         background-color: transparent;
-        border: 1px solid #7b37e8;
-        color: #7b37e8;
+        border: 1px solid #8f51f4;
+        color: #8f51f4;
         padding: 5px 12px;
         border-radius: .3rem;
         font-weight: bold;
