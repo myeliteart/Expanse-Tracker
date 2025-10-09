@@ -1,11 +1,11 @@
 <template>
   <div class="relative min-h-screen flex sm:flex-row flex-col justify-between w-full" :class="store.isDarkMode == false ? 'bg-white text-gray-800' : 'bg-gray-800 text-white'">
     <the-nav></the-nav>
-    <div class="relative text-end mt-4 mr-4 sm:absolute sm:top-3 sm:right-4 cursor-pointer" @click="store.toggleDark">
+    <div class="relative text-end mt-4 mr-4 sm:absolute sm:top-2 sm:right-2 cursor-pointer" @click="store.toggleDark">
       <font-awesome-icon class="" :icon="['fas', 'circle-half-stroke']"></font-awesome-icon> 
       {{ store.isDarkMode == false ? 'Dark' : 'Light' }}
     </div>
-      <section class="w-[90%] sm:max-w-[70%] max-w-[90%] grow mx-auto px-7 py-20">
+      <section class="w-[90%] sm:max-w-[70%] max-w-[90%] grow mx-auto px-7 my-18 sm:my-26">
           <RouterView />
       </section>
   </div>
