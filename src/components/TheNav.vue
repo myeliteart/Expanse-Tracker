@@ -35,7 +35,7 @@
          <li class="flex justify-between items-center">
             <router-link to="/expanse" class="">
                 <font-awesome-icon :icon="['fas', 'credit-card']" class="mr-2"></font-awesome-icon> 
-                Expanse
+                Expense
             </router-link>
         </li>
          <li class="flex justify-between items-center">
@@ -70,7 +70,7 @@
         <li class="flex justify-between items-center border-t-1 border-t-gray-400 px-7">
           <router-link to="/expanse" class="block" @click="store.navOpen = false">
            <font-awesome-icon :icon="['fas', 'credit-card']" class="mr-2"></font-awesome-icon>   
-            Expanse
+            Expense
           </router-link>
         </li>
          <li class="flex justify-between items-center border-t-1 border-t-gray-400 px-7">
