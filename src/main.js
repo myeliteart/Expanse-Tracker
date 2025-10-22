@@ -24,14 +24,14 @@ import BaseButton from './components/layout/BaseButton.vue'
 import BaseModal from './components/layout/BaseModal.vue'
 
 import Income from '@/components/Income.vue';
-import Expanse from '@/components/Expanse.vue';
+import Expense from '@/components/Expense.vue';
 
 const app = createApp(App)
 
 app.component('base-button', BaseButton);
 app.component('base-modal', BaseModal)
 app.component('income', Income);
-app.component('expanse', Expanse);
+app.component('expense', Expense);
 
 app.component('font-awesome-icon', FontAwesomeIcon)
 

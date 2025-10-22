@@ -17,7 +17,7 @@
                 <AccordionHeader>How do I record an expense?</AccordionHeader>
                 <AccordionContent>
                     <p class="m-0">
-                       Open the "Expense" tab, enter the details and amount, then click "Add Expanse" The balance will automatically decrease based on the expense amount.
+                       Open the "Expense" tab, enter the details and amount, then click "Add Expense" The balance will automatically decrease based on the expense amount.
                     </p>
                 </AccordionContent>
             </AccordionPanel>
