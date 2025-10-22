@@ -1,9 +1,9 @@
 <template>
    <div class="w-full">
       <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
-      <h1 class="text-3xl font-bold">Expanse History</h1>
+      <h1 class="text-3xl font-bold">Expense History</h1>
       <hr class="mt-2 border-gray-400"></hr>
-      <p v-if="!store.expanseHistory.length" class="text-center pt-10">Expanse History is currently empty</p>
+      <p v-if="!store.expanseHistory.length" class="text-center pt-10">Expense History is currently empty</p>
       
    <ul v-if="store.expanseHistory.length">
       <div v-for="expanse in store.expanseHistory" :key="expanse.id" class="py-4 border-b border-gray-400 text-1xl content-center">

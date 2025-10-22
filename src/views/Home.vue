@@ -13,7 +13,7 @@
                 <h2 class="font-bold text-2xl text-emerald-500">${{ store.income.toFixed(2) }}</h2>
             </div>
             <div class="text-center">
-                <h3 class="text-2xl font-medium mb-2">Expanses</h3>
+                <h3 class="text-2xl font-medium mb-2">Expense</h3>
                 <h2 class="font-bold text-2xl text-red-600">${{ store.expanse.toFixed(2) }}</h2>
             </div>
         </div>

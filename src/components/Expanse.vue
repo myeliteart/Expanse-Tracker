@@ -1,12 +1,12 @@
 <template>
     <Form class="text-left mt-4" @submit="Validate.decrement" :validation-schema="Validate.schema">
         <div>
-            <label for="desc">Expanse Description</label>
+            <label for="desc">Expense Description</label>
             <Field type="text" name="desc" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0"></Field>
             <small class="text-red-600"><ErrorMessage name="desc" /></small>
         </div>
         <div class="my-3">
-             <label for="amount">Expanse Amount</label>
+             <label for="amount">Expense Amount</label>
             <Field type="number" name="amount" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0"></Field>
             <small class="text-red-600"><ErrorMessage name="amount" /></small>
         </div>
@@ -24,7 +24,7 @@
             </div>
         </div> -->
         <div class="mt-4">
-            <base-button type="submit"  :mode="store.isDarkMode ==  false ? 'btnActive' : 'btnActiveDark'" class="font-medium w-full cursor-pointer">Add Expanse</base-button>
+            <base-button type="submit"  :mode="store.isDarkMode ==  false ? 'btnActive' : 'btnActiveDark'" class="font-medium w-full cursor-pointer">Add Expense</base-button>
         </div>
    </Form>
 

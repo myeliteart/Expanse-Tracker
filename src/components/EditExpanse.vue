@@ -2,11 +2,11 @@
   <h3 class="text-2xl font-bold mb-4">Edit Transection</h3> 
   <form @submit.prevent="editV.editFormE">
     <div>
-        <label>Expanse Description</label> 
+        <label>Expense Description</label> 
         <input type="text" v-model.trim="store.expanseEditedFields.description" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0">
     </div>
      <div class="my-3">
-        <label>Expanse Amount</label>
+        <label>Expense Amount</label>
         <input type="number" v-model.trim="store.expanseEditedFields.amount" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0">
     </div>
      <div v-if="store.AllLabels.length">

@@ -42,7 +42,7 @@ export const useTransectionsStore = defineStore('transections', () => {
   
   const labelsEditedFields = ref (null);
 
-  const tabs = ref (['Income', 'Expanse'])
+  const tabs = ref (['Income', 'Expense'])
 
   const navOpen = ref (false);
   const modal = ref(null);
