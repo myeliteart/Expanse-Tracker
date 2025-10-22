@@ -16,18 +16,18 @@
          </div>
          <span class="text-1xl font-medium">${{ all.amount.toFixed(2) }}</span>
             <span class="cursor-pointer hidden lg:block">
-                <font-awesome-icon @click="store.deleteIncome(all)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
-                <font-awesome-icon  @click="store.editedIncome(all)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
+                <font-awesome-icon @click="store.deleteBoth(all)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
+                <font-awesome-icon  @click="store.editedBoth(all)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
             </span>
 
             <div class="cursor-pointer block lg:hidden">
                 <font-awesome-icon @click="store.actions(all)" :icon="['fas', 'ellipsis']" class="text-gray-500"></font-awesome-icon> 
                <span v-if="store.mobileActions == all.id" class="block mt-2 absolute z-20">
                     <div class="block">
-                        <font-awesome-icon @click="store.deleteIncome(all)" :icon="['fas', 'trash']" class="text-gray-500 bg-gray-100 p-2 rounded"></font-awesome-icon> 
+                        <font-awesome-icon @click="store.deleteBoth(all)" :icon="['fas', 'trash']" class="text-gray-500 bg-gray-100 p-2 rounded"></font-awesome-icon> 
                     </div>
                     <div class="block">
-                        <font-awesome-icon @click="store.editedIncome(all)" :icon="['fas', 'pencil']" class="text-gray-500 bg-gray-100 p-2 rounded"></font-awesome-icon>
+                        <font-awesome-icon @click="store.editedBoth(all)" :icon="['fas', 'pencil']" class="text-gray-500 bg-gray-100 p-2 rounded"></font-awesome-icon>
                     </div>
                </span>
             </div>
@@ -44,6 +44,12 @@
       </div>
    </base-modal>
 
+    <base-modal v-if="store.ExpModal">
+      <div class="w-full p-6">
+        <edit-expanse></edit-expanse>
+      </div>
+   </base-modal>
+
     <base-modal v-if="store.modalDelete">
          <font-awesome-icon @click="store.modalDelete = null" :icon="['fas', 'xmark']" class="cursor-pointer text-gray-500 absolute right-0 mx-2 my-3"></font-awesome-icon> 
          <div class="p-6 mt-6">
@@ -53,6 +59,17 @@
             <base-button @click="store.modalDelete = null" class="mr-2 cursor-pointer">Cancel</base-button>
             <base-button @click="store.confirmDeletion" class="cursor-pointer" mode="btnActive">Delete</base-button>
          </div>
+   </base-modal>
+
+    <base-modal v-if="store.modalDeleteE">
+      <font-awesome-icon @click="store.modalDeleteE = null" :icon="['fas', 'xmark']" class="cursor-pointer text-gray-500 absolute right-0 mx-2 my-3"></font-awesome-icon> 
+      <div class="w-full p-6 mt-6">
+      <p class="text-1xl">Are you sure you want to delete <b>{{ store.modalDeleteE.description }}</b> ?</p>
+      </div>
+      <div class="flex justify-end mx-4 mb-4">
+         <base-button @click="store.modalDeleteE = null" class="mr-2 cursor-pointer">Cancel</base-button>
+         <base-button @click="store.confirmDeletion2" class="cursor-pointer" mode="btnActive">Delete</base-button>
+      </div>
    </base-modal>
 </teleport>
 
@@ -65,4 +82,5 @@
      const store = useTransectionsStore();
 
      import EditIncome from '@/components/EditIncome.vue';
+     import EditExpanse from '@/components/EditExpanse.vue';
 </script>

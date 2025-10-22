@@ -134,6 +134,16 @@ export const useTransectionsStore = defineStore('transections', () => {
     mobileActions.value = null
   }
 
+  const deleteBoth = (transection) => {
+    if(transection.type == 'income') {
+      modalDelete.value = transection
+      mobileActions.value = null
+    } else {
+       modalDeleteE.value = transection
+       mobileActions.value = null
+    }
+  }
+
   const deleteExpanse = (exp) => {
     modalDeleteE.value = exp
     mobileActions.value = null
@@ -144,6 +154,22 @@ export const useTransectionsStore = defineStore('transections', () => {
     mobileActions.value = null
     incomeEditedFields.value = {
       ...(income)
+    }
+  }
+
+  const editedBoth = (transection) => {
+     if(transection.type == 'income') {
+     modal.value = transection;
+     mobileActions.value = null
+     incomeEditedFields.value = {
+      ...(transection)
+    }
+    } else {
+        ExpModal.value = transection;
+        mobileActions.value = null
+        expanseEditedFields.value = {
+        ...(transection)
+      }
     }
   }
 
@@ -186,5 +212,5 @@ export const useTransectionsStore = defineStore('transections', () => {
     isDarkMode.value = !isDarkMode.value
   }
 
-  return { balance, income, expanse, actionsLbl, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
+  return { balance, income, expanse, actionsLbl, deleteBoth, editedBoth, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
 })
