@@ -9,12 +9,14 @@
         <label>Expanse Amount</label>
         <input type="number" v-model.trim="store.expanseEditedFields.amount" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0">
     </div>
-     <div> 
-        <label>Category</label>
-        <select v-model.trim="store.expanseEditedFields.cat" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0">
-            <option v-for="c in store.expanseFields.cat" :value="c.value">{{ c.text }}</option>
-        </select>
+     <div v-if="store.AllLabels.length">
+        <label>Labels</label>
+        <div v-for="label in store.AllLabels" :key="label.id" class="my-2 wrap-break-word">
+            <input type="checkbox" v-model="store.expanseEditedFields.lbl" :value="label" :class="store.isDarkMode == true ? 'accent' : '' "/>
+            {{ label.description }} 
+        </div>
     </div>
+
     <div class="mt-3 flex justify-end">
         <base-button @click="store.ExpModal = null" class="font-bold cursor-pointer mr-2">Cancel</base-button>
         <base-button type="submit" mode="btnActive" class="font-bold cursor-pointer">Save</base-button>
@@ -29,3 +31,11 @@
       import { useEditValidate } from '@/composables/EditValidate'
     const editV = useEditValidate();
 </script>
+
+<style scoped>
+   input[type=checkbox] {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+</style>

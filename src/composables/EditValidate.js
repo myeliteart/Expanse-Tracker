@@ -4,7 +4,7 @@
     const store = useTransectionsStore();
 
     const editFormI = () => {
-      if(store.incomeEditedFields.description == '' || store.incomeEditedFields.amount === '' || store.incomeEditedFields.cat == '') {
+      if(store.incomeEditedFields.description == '' || store.incomeEditedFields.amount === '') {
         alert('Missing required fields')
         return;
       } if (store.incomeEditedFields.amount < 1) {
@@ -19,8 +19,7 @@
 
         store.incomeHistory[index].description = store.incomeEditedFields.description
         store.incomeHistory[index].amount = newAmount
-        store.incomeHistory[index].cat = store.incomeEditedFields.cat
-
+        store.incomeHistory[index].lbl = store.incomeEditedFields.lbl
         store.income += newAmount
         store.balance += newAmount
 
@@ -31,8 +30,7 @@
      if (store.expanseEditedFields.description == '' || store.expanseEditedFields.amount === ''  || store.expanseEditedFields.cat == '') {
          alert('Missing Required FIelds')
          return;
-     } 
-     if (store.expanseEditedFields.amount < 1) {
+     } if (store.expanseEditedFields.amount < 1) {
         alert('Amount should be at least $1')
         return;
       }
@@ -44,7 +42,7 @@
 
           store.expanseHistory[index].description = store.expanseEditedFields.description
           store.expanseHistory[index].amount = newAmount
-          store.expanseHistory[index].cat = store.expanseEditedFields.cat
+          store.expanseHistory[index].lbl = store.expanseEditedFields.lbl
 
           store.expanse += newAmount
           store.balance -= newAmount
@@ -52,5 +50,13 @@
           store.ExpModal = null
         }
 
-    return { editFormI, editFormE }
+        const editFormLabelI = () => {
+          if (store.labelsEditedFields.description !== '') {       
+          let index = store.AllLabels.findIndex(itm => itm.id == store.labelsEditedFields.id)
+          store.AllLabels[index].description = store.labelsEditedFields.description
+          store.editLabelModal = null
+        }
+       }
+
+    return { editFormI, editFormE, editFormLabelI }
 }

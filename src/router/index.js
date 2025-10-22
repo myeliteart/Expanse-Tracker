@@ -22,6 +22,16 @@ const router = createRouter({
       component: () => import('@/views/TheExpanse.vue')
     },
     {
+      path: '/labels',
+      name: 'labels',
+      component: () => import('@/views/Labels.vue')
+    },
+     {
+      path: '/labels/:id',
+      name: 'labelsDetails',
+      component: () => import('@/views/LabelsDetails.vue')
+    },
+    {
       path: '/faq',
       name: 'faq',
       component: () => import('@/views/faq.vue')

@@ -1,4 +1,5 @@
 <template>
+     <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
    <h1 class="text-3xl font-bold">Frequently asked Questions</h1>
    <hr class="my-2 border-gray-400"></hr>     
 
@@ -16,7 +17,7 @@
                 <AccordionHeader>How do I record an expense?</AccordionHeader>
                 <AccordionContent>
                     <p class="m-0">
-                       Open the "Expenses" tab, enter the details and amount, then click "Add Expanse" The balance will automatically decrease based on the expense amount.
+                       Open the "Expense" tab, enter the details and amount, then click "Add Expanse" The balance will automatically decrease based on the expense amount.
                     </p>
                 </AccordionContent>
             </AccordionPanel>
@@ -57,6 +58,9 @@
 </template>
 
 <script setup>
+     import { useRouter } from 'vue-router';
+     const router = useRouter();
+
    import Accordion from 'primevue/accordion';
    import AccordionPanel from 'primevue/accordionpanel';
    import AccordionHeader from 'primevue/accordionheader';

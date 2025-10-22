@@ -13,7 +13,10 @@
         store.modal = null
         store.ExpModal = null
         store.modalDeleteE = null
-        store.modalDelete = null
+        store.modalDelete = null;
+        store.LabelModal = false;
+        store.DeleteLabelModal = null;
+        store.editLabelModal = null
      }
 </script>
 

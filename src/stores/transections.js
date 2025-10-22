@@ -1,5 +1,7 @@
-import { ref, } from 'vue'
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { useRouter, useRoute } from 'vue-router';
+
 // import { useLocalStorage } from '@vueuse/core';
 
 export const useTransectionsStore = defineStore('transections', () => {
@@ -7,10 +9,12 @@ export const useTransectionsStore = defineStore('transections', () => {
   const balance = ref(0)
   const income = ref(0)
   const expanse = ref(0)
-  const selectedCatE = ref('Food');
-  const selectedCatI = ref('Work');
   const incomeHistory = ref ([]);
   const expanseHistory = ref([]);
+
+  const router = useRouter();
+  const route = useRoute();
+
   // const incomeHistory = useLocalStorage('incomeHistory', []);
   // const expanseHistory = useLocalStorage('expanseHistory', [])
 
@@ -18,56 +22,25 @@ export const useTransectionsStore = defineStore('transections', () => {
   //   incomeHistory.value.reduce((sum, i) => sum + (i.amount), 0)
   // })
 
-  const incomeFields = ref (
-    {
-      description: '',
-      amount: '',
-      cat: [
-    {
-      text: 'Food',
-      value: 'Food'
-    },
-     {
-      text: 'Work',
-      value: 'Work'
-    },
-     {
-      text: 'Rent',
-      value: 'Rent'
-    },
-     {
-      text: 'Other',
-      value: 'Other'
-    }
-  ]});
 
-    const expanseFields = ref (
-    {
-      description: '',
-      amount: '',
-      cat: [
-    {
-      text: 'Food',
-      value: 'Food'
-    },
-     {
-      text: 'Work',
-      value: 'Work'
-    },
-     {
-      text: 'Rent',
-      value: 'Rent'
-    },
-     {
-      text: 'Other',
-      value: 'Other'
-    }
-  ]});
+  // const incomeFields = ref (
+  //   {
+  //     description: '',
+  //     amount: '',
+  //     lbl: []
+  // });
+
+  //   const expanseFields = ref (
+  //   {
+  //     description: '',
+  //     amount: '',
+  //     lbl: []
+  // });
 
   const incomeEditedFields = ref (null);
-
   const expanseEditedFields = ref (null);
   
+  const labelsEditedFields = ref (null);
 
   const tabs = ref (['Income', 'Expanse'])
 
@@ -76,15 +49,85 @@ export const useTransectionsStore = defineStore('transections', () => {
   const modalDelete = ref(null);
   const modalDeleteE = ref(null)
   const ExpModal = ref(null);
+  const LabelModal = ref(false);
+  const LabelModalExpanse = ref(false);
+
+  const DeleteLabelModal = ref(null);
+  const editLabelModal = ref(null);
 
   const mobileActions = ref(null);
   const isDarkMode = ref(false);
+
+  const labelDescription = ref ('');
+
+  const AllLabels = ref ([]);
+
+  const selectedLabels = ref ([]);
 
   // const filterNumericValue = (event) => {
   //    let value = event.target.value;
   //     value = value.replace(/[^0-9]/g, '');
   //     incomeFields.value.amount = value;
   // }
+
+  const createLabel = () => {
+    if(labelDescription.value !== '') {
+      if(!AllLabels.value.find(itm => itm.description == labelDescription.value)) {
+        const hello = {
+          id: AllLabels.value.length + 1,
+          description: labelDescription.value
+        }
+         AllLabels.value.unshift(hello);
+         LabelModal.value = false;
+      }
+    }
+    labelDescription.value = ''
+  }
+
+  const deleteLabel = (lbl) => {
+    DeleteLabelModal.value = lbl
+    mobileActions.value = null
+  }
+
+  const confirmLabelDeletion = () => {
+    AllLabels.value = AllLabels.value.filter(itm => itm.id !== DeleteLabelModal.value.id)
+
+    incomeHistory.value.forEach(inc => {
+      inc.lbl = inc.lbl.filter(lbl => lbl.id !== DeleteLabelModal.value.id)
+    })
+     expanseHistory.value.forEach(exp => {
+      exp.lbl = exp.lbl.filter(lbl => lbl.id !== DeleteLabelModal.value.id)
+    })
+    DeleteLabelModal.value = null
+  }
+
+  const editLabel = (lbl) => {
+    editLabelModal.value = lbl
+    mobileActions.value = null
+    labelsEditedFields.value = {
+      ...(lbl)
+    }
+  }
+
+  const cancelLabel = () => {
+     LabelModal.value = false;
+     labelDescription.value = ''
+  }
+
+  const goToLabelDetails = (label) => {
+    router.push({name: 'labelsDetails', params: {id: label.description.toLowerCase().split(' ').join('-')}})
+  }
+
+  const findLabel = computed(() => {
+    return AllLabels.value.find(lbl => lbl.description.toLowerCase().split(' ').join('-') == route.params.id);
+  })
+
+  const findWithThisLabel = computed(() => {
+    const filteredIncome = incomeHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ));
+    const filteredExpanse = expanseHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ))
+    return [...filteredIncome, ...filteredExpanse]
+  })
+
 
   const deleteIncome = (inc) => {
     modalDelete.value = inc
@@ -93,7 +136,7 @@ export const useTransectionsStore = defineStore('transections', () => {
 
   const deleteExpanse = (exp) => {
     modalDeleteE.value = exp
-     mobileActions.value = null
+    mobileActions.value = null
   }
 
   const editedIncome = (income) => {
@@ -130,6 +173,11 @@ export const useTransectionsStore = defineStore('transections', () => {
     mobileActions.value = mobileActions.value == income.id ? null : income.id;
   }
 
+    const actionsLbl = (lbl) => {
+    mobileActions.value = mobileActions.value == lbl.id ? null : lbl.id;
+  }
+
+
   // const formattedAmount = computed(() => {
   //   incomeFields.value.amount = parseFloat().toFixed(2);
   // })
@@ -138,5 +186,5 @@ export const useTransectionsStore = defineStore('transections', () => {
     isDarkMode.value = !isDarkMode.value
   }
 
-  return { balance, income, toggleDark, isDarkMode, expanse, tabs, ExpModal, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, confirmDeletion2, incomeFields, navOpen, selectedCatE, modal, selectedCatI, expanseFields, incomeHistory, expanseHistory, deleteExpanse, deleteIncome, actions }
+  return { balance, income, expanse, actionsLbl, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
 })
