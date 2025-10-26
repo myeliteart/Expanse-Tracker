@@ -14,14 +14,14 @@
         let index = store.incomeHistory.findIndex(item => item.id == store.incomeEditedFields.id)
         const oldAmount = store.incomeHistory[index].amount
         const newAmount = store.incomeEditedFields.amount
-        store.income = store.income - oldAmount
-        store.balance = store.balance - oldAmount
+        // store.income = store.income - oldAmount
+        // store.balance = store.balance - oldAmount
 
         store.incomeHistory[index].description = store.incomeEditedFields.description
         store.incomeHistory[index].amount = newAmount
         store.incomeHistory[index].lbl = store.incomeEditedFields.lbl
-        store.income += newAmount
-        store.balance += newAmount
+        // store.income += newAmount
+        // store.balance += newAmount
 
         store.modal = null
      }
@@ -37,15 +37,15 @@
           let index = store.expanseHistory.findIndex(item => item.id == store.expanseEditedFields.id)
           const oldAmount = store.expanseHistory[index].amount
           const newAmount = store.expanseEditedFields.amount
-          store.expanse = store.expanse - oldAmount
-          store.balance = store.balance + oldAmount
+          // store.expanse = store.expanse - oldAmount
+          // store.balance = store.balance + oldAmount
 
           store.expanseHistory[index].description = store.expanseEditedFields.description
           store.expanseHistory[index].amount = newAmount
           store.expanseHistory[index].lbl = store.expanseEditedFields.lbl
 
-          store.expanse += newAmount
-          store.balance -= newAmount
+          // store.expanse += newAmount
+          // store.balance -= newAmount
 
           store.ExpModal = null
         }

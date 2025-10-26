@@ -14,7 +14,7 @@
       const eli = {
         id: store.incomeHistory.length + 1,
         description: values.desc,
-        amount: values.amount,
+        amount: Number(values.amount),
         lbl: store.selectedLabels,
         type: 'income'
      }
@@ -22,8 +22,8 @@
       alert('This income description is already in use')
       return;
      } else {
-      store.balance += values.amount
-      store.income += values.amount
+      // store.balance += values.amount
+      // store.income += values.amount
       store.incomeHistory.unshift(eli)
       resetForm();
       store.selectedLabels = []
@@ -34,7 +34,7 @@
       const eli = {
         id: store.expanseHistory.length + 1,
         description: values.desc,
-        amount: values.amount,
+        amount: Number(values.amount),
         lbl: store.selectedLabels,
         type: 'expanse'
       }
@@ -42,8 +42,8 @@
       alert('This expanse description is already in use')
       return;
      } else {
-      store.balance -= values.amount
-      store.expanse += values.amount
+      // store.balance -= values.amount
+      // store.expanse += values.amount
       store.expanseHistory.unshift(eli)
       resetForm();
       store.selectedLabels = []

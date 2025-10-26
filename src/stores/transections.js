@@ -1,27 +1,36 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useRouter, useRoute } from 'vue-router';
-
-// import { useLocalStorage } from '@vueuse/core';
+import { useLocalStorage } from '@vueuse/core';
 
 export const useTransectionsStore = defineStore('transections', () => {
 
-  const balance = ref(0)
-  const income = ref(0)
-  const expanse = ref(0)
-  const incomeHistory = ref ([]);
-  const expanseHistory = ref([]);
+  const incomeHistory = useLocalStorage('incomeHistory', []);
+  const expanseHistory = useLocalStorage('expanseHistory', [])
+  const AllLabels = useLocalStorage('AllLabels', [])
+   const selectedLabels = useLocalStorage('selectedLabels', [])
+
+  const income = computed(() => 
+    incomeHistory.value.reduce((sum, i) => sum + Number(i.amount ||  0), 0)
+  )
+
+  const expanse = computed(() => 
+    expanseHistory.value.reduce((sum, i) => sum + Number(i.amount ||  0), 0)
+  )
+
+   const balance = computed(() => income.value - expanse.value)
+
+  //  const income = useLocalStorage('income', incomeWrap.value)
+  //  const expanse = useLocalStorage('expanse', 0)
+
+  // const balance = ref(0)
+  // const income = ref(0)
+  // const expanse = ref(0)
+  // const incomeHistory = ref ([]);
+  // const expanseHistory = ref([]);
 
   const router = useRouter();
   const route = useRoute();
-
-  // const incomeHistory = useLocalStorage('incomeHistory', []);
-  // const expanseHistory = useLocalStorage('expanseHistory', [])
-
-  //  const income = computed(() => {
-  //   incomeHistory.value.reduce((sum, i) => sum + (i.amount), 0)
-  // })
-
 
   // const incomeFields = ref (
   //   {
@@ -29,6 +38,7 @@ export const useTransectionsStore = defineStore('transections', () => {
   //     amount: '',
   //     lbl: []
   // });
+
 
   //   const expanseFields = ref (
   //   {
@@ -59,10 +69,6 @@ export const useTransectionsStore = defineStore('transections', () => {
   const isDarkMode = ref(false);
 
   const labelDescription = ref ('');
-
-  const AllLabels = ref ([]);
-
-  const selectedLabels = ref ([]);
 
   // const filterNumericValue = (event) => {
   //    let value = event.target.value;
@@ -183,15 +189,15 @@ export const useTransectionsStore = defineStore('transections', () => {
 
   const confirmDeletion = () => {
      incomeHistory.value = incomeHistory.value.filter(item => item.id !== modalDelete.value.id)
-     balance.value = balance.value - modalDelete.value.amount
-     income.value = income.value - modalDelete.value.amount
+    //  balance.value = balance.value - modalDelete.value.amount
+    //  income.value = income.value - modalDelete.value.amount
      modalDelete.value = null;
   }
 
   const confirmDeletion2 = () => {
     expanseHistory.value = expanseHistory.value.filter(item => item.id !== modalDeleteE.value.id)
-    balance.value = balance.value + modalDeleteE.value.amount
-    expanse.value = expanse.value - modalDeleteE.value.amount
+    // balance.value = balance.value + modalDeleteE.value.amount
+    // expanse.value = expanse.value - modalDeleteE.value.amount
     modalDeleteE.value = null;
   }
 
