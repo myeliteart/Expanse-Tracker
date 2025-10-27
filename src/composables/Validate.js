@@ -6,7 +6,7 @@
 
         const schema = yup.object().shape({
         desc: yup.string().required('Description is Required'),
-        amount: yup.number().required('Amount is Required').min(1, 'Min Amount should be $1'),
+        amount: yup.number().typeError('Amount must be a number').required('Amount is Required').min(1, 'Min Amount should be $1'),
         // selectedOption: yup.string().notRequired()
     })
 
