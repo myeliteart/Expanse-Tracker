@@ -202,9 +202,14 @@ export const useTransectionsStore = defineStore('transections', () => {
     mobileActions.value = mobileActions.value == income.id ? null : income.id;
   }
 
-    const actionsLbl = (lbl) => {
+  const actionsLbl = (lbl) => {
     mobileActions.value = mobileActions.value == lbl.id ? null : lbl.id;
   }
+
+  const actionsBoth = (all) => {
+    mobileActions.value = mobileActions.value == all.id ? null : all.id;
+  }
+
 
 
   // const formattedAmount = computed(() => {
@@ -215,5 +220,5 @@ export const useTransectionsStore = defineStore('transections', () => {
     isDarkMode.value = !isDarkMode.value
   }
 
-  return { balance, income, expanse, actionsLbl, deleteBoth, editedBoth, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
+  return { balance, income, expanse, actionsBoth, actionsLbl, deleteBoth, editedBoth, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
 })

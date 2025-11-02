@@ -21,7 +21,7 @@
             </span>
 
             <div class="cursor-pointer block lg:hidden">
-                <font-awesome-icon @click="store.actions(all)" :icon="['fas', 'ellipsis']" class="text-gray-500"></font-awesome-icon> 
+               <font-awesome-icon @click="store.actionsBoth(all)" :icon="['fas', 'ellipsis']" class="text-gray-500"></font-awesome-icon> 
                <span v-if="store.mobileActions == all.id" class="block mt-2 absolute z-20">
                     <div class="block">
                         <font-awesome-icon @click="store.deleteBoth(all)" :icon="['fas', 'trash']" class="text-gray-500 bg-gray-100 p-2 rounded"></font-awesome-icon> 
