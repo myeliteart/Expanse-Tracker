@@ -6,31 +6,31 @@
       <p v-if="!store.expanseHistory.length" class="text-center pt-10">Expense History is currently empty</p>
       
    <ul v-if="store.expanseHistory.length">
-      <div v-for="expanse in store.expanseHistory" :key="expanse.id" class="py-4 border-b border-gray-400 text-1xl content-center">
+      <div v-for="expense in store.expanseHistory" :key="expense.id" class="py-4 border-b border-gray-400 text-1xl content-center">
         <li class="flex justify-between items-center content-center">
          <div class="wrap-break-word text-1xl grow max-w-28 md:max-w-64">
-            <div class="font-medium">{{ expanse.description }}</div>
+            <div class="font-medium">{{ expense.description }}</div>
 
-             <div v-for="item in expanse.lbl" class="lg:grow-0 mt-1">
+             <div v-for="item in expense.lbl" class="lg:grow-0 mt-1">
                <font-awesome-icon :icon="['fas', 'tag']" :class="store.isDarkMode == false ? 'text-gray-600' : ''"></font-awesome-icon>
                <span class="ml-1 cursor-pointer hover:underline" @click="store.goToLabelDetails(item)">{{ item.description }}</span>
              </div>
          </div>
 
-          <span class="text-1xl font-medium">${{ expanse.amount.toFixed(2) }}</span>
+          <span class="text-1xl font-medium">${{ expense.amount.toFixed(2) }}</span>
             <span class="cursor-pointer hidden lg:block">
-                  <font-awesome-icon @click="store.deleteExpanse(expanse)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
-                  <font-awesome-icon  @click="store.editedExpanse(expanse)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
+                  <font-awesome-icon @click="store.deleteExpanse(expense)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
+                  <font-awesome-icon  @click="store.editedExpanse(expense)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
             </span>
        
         <div class="cursor-pointer block lg:hidden">
-               <font-awesome-icon @click="store.actions(expanse)" :icon="['fas', 'ellipsis']" class="text-gray-500"></font-awesome-icon> 
-               <span v-if="store.mobileActions == expanse.id" class="block mt-2 absolute z-20">
+               <font-awesome-icon @click="store.actions(expense)" :icon="['fas', 'ellipsis']" class="text-gray-500"></font-awesome-icon> 
+               <span v-if="store.mobileActions == expense.id" class="block mt-2 absolute z-20">
                <div class="block">
-                  <font-awesome-icon @click="store.deleteExpanse(expanse)" :icon="['fas', 'trash']" class="text-gray-500 bg-gray-100 p-2 rounded"></font-awesome-icon> 
+                  <font-awesome-icon @click="store.deleteExpanse(expense)" :icon="['fas', 'trash']" class="text-gray-500 bg-gray-100 p-2 rounded"></font-awesome-icon> 
                </div>
                <div class="block">
-                  <font-awesome-icon @click="store.editedExpanse(expanse)" :icon="['fas', 'pencil']" class="text-gray-500 bg-gray-100 p-2 rounded"></font-awesome-icon>
+                  <font-awesome-icon @click="store.editedExpanse(expense)" :icon="['fas', 'pencil']" class="text-gray-500 bg-gray-100 p-2 rounded"></font-awesome-icon>
                </div>
             </span>
          </div>
