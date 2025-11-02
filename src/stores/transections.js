@@ -20,9 +20,6 @@ export const useTransectionsStore = defineStore('transections', () => {
 
    const balance = computed(() => income.value - expanse.value)
 
-  //  const income = useLocalStorage('income', incomeWrap.value)
-  //  const expanse = useLocalStorage('expanse', 0)
-
   // const balance = ref(0)
   // const income = ref(0)
   // const expanse = ref(0)

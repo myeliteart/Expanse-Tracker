@@ -18,17 +18,12 @@
         lbl: store.selectedLabels,
         type: 'income'
      }
-     if(store.incomeHistory.find(inc => inc.description == values.desc)){
-      alert('This income description is already in use')
-      return;
-     } else {
       // store.balance += values.amount
       // store.income += values.amount
       store.incomeHistory.unshift(eli)
       resetForm();
       store.selectedLabels = []
      }
-  }
 
   function decrement (values, { resetForm } ) { 
       const eli = {
@@ -36,19 +31,15 @@
         description: values.desc,
         amount: Number(values.amount),
         lbl: store.selectedLabels,
-        type: 'expanse'
+        type: 'expense'
       }
-    if(store.expanseHistory.find(exp => exp.description == values.desc)){
-      alert('This expanse description is already in use')
-      return;
-     } else {
+
       // store.balance -= values.amount
       // store.expanse += values.amount
       store.expanseHistory.unshift(eli)
       resetForm();
       store.selectedLabels = []
   }
-}
 
     return { schema, increment, decrement }
 }
