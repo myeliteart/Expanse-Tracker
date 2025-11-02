@@ -13,7 +13,7 @@
 
              <div v-for="item in expanse.lbl" class="lg:grow-0 mt-1">
                <font-awesome-icon :icon="['fas', 'tag']" :class="store.isDarkMode == false ? 'text-gray-600' : ''"></font-awesome-icon>
-               <span class="ml-1">{{ item.description }}</span>
+               <span class="ml-1 cursor-pointer hover:underline" @click="store.goToLabelDetails(item)">{{ item.description }}</span>
              </div>
          </div>
 
