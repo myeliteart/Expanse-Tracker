@@ -54,7 +54,7 @@
           if (store.labelsEditedFields.description !== '') {       
           let index = store.AllLabels.findIndex(itm => itm.id == store.labelsEditedFields.id)
           store.AllLabels[index].description = store.labelsEditedFields.description
-          store.selectedLabels.description = store.labelsEditedFields.description
+          store.selectedLabels = store.labelsEditedFields.description
           store.editLabelModal = null
         }
        }
