@@ -10,15 +10,17 @@ export const useTransectionsStore = defineStore('transections', () => {
   const AllLabels = useLocalStorage('AllLabels', [])
    const selectedLabels = useLocalStorage('selectedLabels', [])
 
-  const income = computed(() => 
-    incomeHistory.value.reduce((sum, i) => sum + Number(i.amount ||  0), 0)
-  )
+  const income = computed(() => {
+    return incomeHistory.value.reduce((sum, i) => sum + Number(i.amount), 0).toFixed(2)
+  })
 
-  const expanse = computed(() => 
-    expanseHistory.value.reduce((sum, i) => sum + Number(i.amount ||  0), 0)
-  )
+  const expanse = computed(() => {
+    return expanseHistory.value.reduce((sum, e) => sum + Number(e.amount), 0).toFixed(2)
+  })
 
-   const balance = computed(() => income.value - expanse.value)
+   const balance = computed(() => {
+    return income.value - expanse.value
+   })
 
   // const balance = ref(0)
   // const income = ref(0)
@@ -101,13 +103,13 @@ export const useTransectionsStore = defineStore('transections', () => {
      expanseHistory.value.forEach(exp => {
       exp.lbl = exp.lbl.filter(lbl => lbl.id !== DeleteLabelModal.value.id)
     })
-    DeleteLabelModal.value = null
+    DeleteLabelModal.value = null 
   }
 
   const editLabel = (lbl) => {
     editLabelModal.value = lbl
     mobileActions.value = null
-    labelsEditedFields.value = {
+    labelsEditedFields.value = {  
       ...(lbl)
     }
   }

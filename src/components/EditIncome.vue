@@ -9,7 +9,7 @@
         <label>Income Amount</label>
         <input type="number" v-model.trim="store.incomeEditedFields.amount" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0">
     </div>
-     <div v-if="store.AllLabels.length">
+     <div v-if="store.AllLabels.length"> 
         <label>Labels</label>
         <div v-for="label in store.AllLabels" :key="label.id" class="my-2 wrap-break-word">
             <input type="checkbox" v-model="store.incomeEditedFields.lbl" :value="label" :class="store.isDarkMode == true ? 'accent' : '' "/>

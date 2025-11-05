@@ -28,20 +28,6 @@
             <base-button type="submit" :mode="store.isDarkMode ==  false ? 'btnActive' : 'btnActiveDark'" class="font-medium w-full cursor-pointer">Add Income</base-button>
         </div>
    </Form>
-
-   <!-- <Teleport to="body">
-     <base-modal v-if="store.LabelModal">
-        <font-awesome-icon @click="store.LabelModal = false" :icon="['fas', 'xmark']" class="cursor-pointer text-gray-500 absolute right-0 mx-2 my-3"></font-awesome-icon> 
-        <div class="p-4">
-            <label>Label Note <small>(E.g. Food, Work, Rent etc.)</small></label>
-            <input type="text" v-model.trim="store.labelDescriptionIncome" class="border border-gray-400 w-full mt-1 rounded px-2 py-1 outline-0" />
-            <div class="mt-4 flex justify-end">
-                <base-button @click="store.cancelLabel" class="font-medium w-fit cursor-pointer mr-2">Cancel</base-button>
-                <base-button @click="store.createLabel" mode="btnActiveDark" class="font-medium w-fit cursor-pointer">Create Label</base-button>
-            </div>
-        </div>
-    </base-modal>
-   </Teleport> -->
 </template>
 
 <script setup>

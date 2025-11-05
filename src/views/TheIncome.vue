@@ -5,14 +5,14 @@
       <hr class="mt-2 border-gray-400"></hr>
       <p v-if="!store.incomeHistory.length" class="text-center pt-10">Income History is currently empty</p>
       
-      <ul v-if="store.incomeHistory.length">
+      <ul v-if="store.incomeHistory.length"> 
         <div v-for="income in store.incomeHistory" :key="income.id" class="py-4 border-b border-gray-400 text-1xl">
          <li class="flex justify-between items-center content-center">
          <div class="wrap-break-word text-1xl grow max-w-28 md:max-w-64">
             <div class="font-medium">{{ income.description }}</div>
 
              <div v-for="item in income.lbl" class="lg:grow-0 mt-1">
-               <font-awesome-icon :icon="['fas', 'tag']" :class="store.isDarkMode == false ? 'text-gray-600' : ''"></font-awesome-icon>
+               <font-awesome-icon v-if="item" :icon="['fas', 'tag']" :class="store.isDarkMode == false ? 'text-gray-600' : ''"></font-awesome-icon>
                <span class="ml-1 cursor-pointer hover:underline" @click="store.goToLabelDetails(item)">{{ item.description }}</span> 
              </div>
          </div>
