@@ -133,6 +133,13 @@ export const useTransectionsStore = defineStore('transections', () => {
     return [...filteredIncome, ...filteredExpanse]
   })
 
+  const findIncomeWithThisLabel = computed(() => {
+    return incomeHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ));
+  })
+
+   const findExpenseWithThisLabel = computed(() => {
+    return expanseHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ));
+  })
 
   const deleteIncome = (inc) => {
     modalDelete.value = inc
@@ -222,5 +229,5 @@ export const useTransectionsStore = defineStore('transections', () => {
     isDarkMode.value = !isDarkMode.value
   }
 
-  return { balance, income, expanse, actionsBoth, actionsLbl, deleteBoth, editedBoth, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
+  return { balance, income, expanse, findIncomeWithThisLabel, findExpenseWithThisLabel, actionsBoth, actionsLbl, deleteBoth, editedBoth, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
 })

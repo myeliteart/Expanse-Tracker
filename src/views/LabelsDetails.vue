@@ -36,10 +36,15 @@
         </div>
         </ul>
 
-         <div class="text-center mt-8" v-if="store.findWithThisLabel.length">
-               <h3 class="text-1xl mb-2">
-                  Total: <b>${{ store.findWithThisLabel.reduce((sum, item) => sum + Number(item.amount), 0).toFixed(2) }}</b>
+         <div class="text-center mt-8 block md:flex justify-center gap-26">
+               <h3 class="text-1xl mb-2" v-if="store.findIncomeWithThisLabel.length">
+                  Income Total: <b>${{ store.findIncomeWithThisLabel.reduce((sum, item) => sum + Number(item.amount), 0).toFixed(2) }}</b>
                </h3>
+               <h3 class="text-1xl mb-2" v-if="store.findExpenseWithThisLabel.length">
+                  Expense Total: <b>${{ store.findExpenseWithThisLabel.reduce((sum, item) => sum + Number(item.amount), 0).toFixed(2) }}</b>
+               </h3>
+
+               
          </div>
     </div>
 
