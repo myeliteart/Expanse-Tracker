@@ -15,6 +15,7 @@
             </div>
          </div>
          <span class="text-1xl font-medium">${{ all.amount.toFixed(2) }}</span>
+         
             <span class="cursor-pointer hidden lg:block">
                 <font-awesome-icon @click="store.deleteBoth(all)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
                 <font-awesome-icon  @click="store.editedBoth(all)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 

@@ -8,8 +8,10 @@
          alert('Amount should be at least $1')
          return;
        } 
-      if(store.incomeEditedFields.description !== '' || store.incomeEditedFields.amount !== '') {
-       
+      if(store.incomeEditedFields.description == '' || store.incomeEditedFields.amount == '') {
+         alert('Missing required fields')
+         return;
+      } else{
         let index = store.incomeHistory.findIndex(item => item.id === store.incomeEditedFields.id)
         // const oldAmount = store.incomeHistory[index].amount
         // const newAmount = store.incomeEditedFields.amount
@@ -23,10 +25,7 @@
         // store.balance += newAmount
 
         store.modal = null
-     } else {
-       alert('Missing required fields')
-       return;
-      } 
+     } 
      }
 
     const editFormE = () => {
@@ -34,7 +33,10 @@
         alert('Amount should be at least $1')
         return;
       }
-     if (store.expanseEditedFields.description !== '' || store.expanseEditedFields.amount !== '') {
+     if (store.expanseEditedFields.description == '' || store.expanseEditedFields.amount == '') {
+          alert('Missing Required FIelds')
+          return;
+     } else {
           let index = store.expanseHistory.findIndex(item => item.id == store.expanseEditedFields.id)
           // const oldAmount = store.expanseHistory[index].amount
           const newAmount = store.expanseEditedFields.amount
@@ -49,10 +51,7 @@
           // store.balance -= newAmount
 
           store.ExpModal = null
-        } else {
-           alert('Missing Required FIelds')
-           return;
-        }
+        } 
       }
 
         const editFormLabelI = () => { 
