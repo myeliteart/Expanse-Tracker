@@ -3,8 +3,11 @@
       <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
        <div class="block md:flex md:justify-between items-center content-center">
          <h1 class="text-3xl font-bold">Income History</h1>
-         <input v-model="store.searchIncome" type="search" placeholder="Search Income History" class="w-full md:w-fit mt-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
-      </div>
+         <div class="flex items-center mt-2">
+            <input v-model="store.searchIncome" type="search" placeholder="Search Income History" class=" w-full mr-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
+            <button @click="store.searchAllIncomes" type="submit" class="bg-black px-4 py-1 text-white rounded cursor-pointer hover:bg-gray-800">Search</button>
+         </div>
+   </div>
       
       <hr class="mt-2 border-gray-400"></hr>
       <p v-if="!store.filteredTheIncome.length" class="text-center pt-10">Income History is currently empty</p>
