@@ -1,7 +1,10 @@
 <template>
      <div class="w-full">
         <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
-        <h1 class="text-3xl font-bold">{{ store.findLabel.description }}</h1>
+         <div class="flex justify-between items-center content-center">
+            <h1 class="text-3xl font-bold">{{ store.findLabel.description }}</h1>
+            <input type="search" placeholder="Search Transaction" class="border border-gray-400 rounded px-2 py-1 outline-0">
+         </div>
         <hr class="mt-2 border-gray-400"></hr>
         <p v-if="!store.findWithThisLabel.length" class="text-center pt-10">{{ store.findLabel.description }} is currently empty</p>
 
@@ -9,7 +12,7 @@
         <div v-for="all in store.findWithThisLabel" :key="all.id" class="py-4 border-b border-gray-400 text-1xl">
          <li class="flex justify-between items-center content-center">
          <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ all.date }}</span>
-         
+
         <div class="wrap-break-word text-1xl grow max-w-28 md:max-w-64">
             <div>
                 <font-awesome-icon :icon="['fas', 'tag']" :class="store.isDarkMode == false ? 'text-gray-600' : ''"></font-awesome-icon>
