@@ -329,7 +329,7 @@ const findWithThisLabel = () => {
   }
   
   const confirmDeletion4 = () => {
-    expanseHistory.value = expanseHistory.value.filter(item => item.id !== modalDelete.value.id)
+    expanseHistory.value = expanseHistory.value.filter(item => item.id !== modalDeleteE.value.id)
     findWithThisLabel()
     // balance.value = balance.value + modalDeleteE.value.amount
     // expanse.value = expanse.value - modalDeleteE.value.amount
