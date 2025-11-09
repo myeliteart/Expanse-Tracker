@@ -1,7 +1,11 @@
 <template>
    <div class="w-full">
       <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
-      <h1 class="text-3xl font-bold">Income History</h1>
+      <div class="flex justify-between items-center content-center">
+         <h1 class="text-3xl font-bold">Income History</h1>
+         <input type="search" placeholder="Search Income" class="border border-gray-400 rounded px-2 py-1 outline-0">
+      </div>
+      
       <hr class="mt-2 border-gray-400"></hr>
       <p v-if="!store.incomeHistory.length" class="text-center pt-10">Income History is currently empty</p>
       <ul v-if="store.incomeHistory.length"> 
@@ -17,7 +21,7 @@
                <span class="ml-1 cursor-pointer hover:underline" @click="store.goToLabelDetails(item)">{{ item.description }}</span> 
              </div>
          </div>
-            <span class="text-1xl font-medium grow">${{ income.amount.toFixed(2) }}</span>
+            <span class="text-1xl font-medium grow max-w-28 md:max-w-64">${{ income.amount.toFixed(2) }}</span>
             <span class="cursor-pointer hidden lg:block">
                   <font-awesome-icon @click="store.deleteIncome(income)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
                   <font-awesome-icon  @click="store.editedIncome(income)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 

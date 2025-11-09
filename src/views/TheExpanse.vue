@@ -1,7 +1,10 @@
 <template>
    <div class="w-full">
       <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
-      <h1 class="text-3xl font-bold">Expense History</h1>
+      <div class="flex justify-between items-center content-center">
+         <h1 class="text-3xl font-bold">Expense History</h1>
+         <input type="search" placeholder="Search Expense" class="border border-gray-400 rounded px-2 py-1 outline-0">
+      </div>
       <hr class="mt-2 border-gray-400"></hr>
       <p v-if="!store.expanseHistory.length" class="text-center pt-10">Expense History is currently empty</p>
       
@@ -18,7 +21,7 @@
              </div>
          </div>
 
-          <span class="text-1xl font-medium grow">${{ expense.amount.toFixed(2) }}</span>
+          <span class="text-1xl font-medium grow max-w-28 md:max-w-64">${{ expense.amount.toFixed(2) }}</span>
             <span class="cursor-pointer hidden lg:block">
                   <font-awesome-icon @click="store.deleteExpanse(expense)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
                   <font-awesome-icon  @click="store.editedExpanse(expense)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
