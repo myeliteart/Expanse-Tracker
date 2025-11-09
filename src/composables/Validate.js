@@ -10,13 +10,21 @@
         // selectedOption: yup.string().notRequired()
     })
 
+// let date = new Date();  
+// let options = {  
+//     weekday: "long", year: "numeric", month: "short",  
+//     day: "numeric", hour: "numeric", minute: "2-digit"  
+// };  
+
     function increment (values, { resetForm } ) {
       const eli = {
         id: store.incomeHistory.length + 1,
         description: values.desc,
         amount: Number(values.amount),
         lbl: store.selectedLabels,
-        type: 'income'
+        type: 'income',
+        date: new Date().toLocaleString()
+        // date: date.toLocaleTimeString("en-us", options)
      }
       // store.balance += values.amount
       // store.income += values.amount
@@ -31,7 +39,8 @@
         description: values.desc,
         amount: Number(values.amount),
         lbl: store.selectedLabels,
-        type: 'expense'
+        type: 'expense',
+        date: new Date().toLocaleString()
       }
 
       // store.balance -= values.amount

@@ -5,9 +5,10 @@
         <hr class="mt-2 border-gray-400"></hr>
         <p v-if="!store.findWithThisLabel.length" class="text-center pt-10">{{ store.findLabel.description }} is currently empty</p>
 
-        <ul v-if="store.findWithThisLabel.length">
+        <ul v-if="store.findWithThisLabel.length"> 
         <div v-for="all in store.findWithThisLabel" :key="all.id" class="py-4 border-b border-gray-400 text-1xl">
          <li class="flex justify-between items-center content-center">
+         <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ all.date }}</span>
         <div class="wrap-break-word text-1xl grow max-w-28 md:max-w-64">
             <div>
                 <font-awesome-icon :icon="['fas', 'tag']" :class="store.isDarkMode == false ? 'text-gray-600' : ''"></font-awesome-icon>
@@ -36,15 +37,13 @@
         </div>
         </ul>
 
-         <div class="text-center mt-8 block md:flex justify-center gap-26">
-               <h3 class="text-1xl mb-2" v-if="store.findIncomeWithThisLabel.length">
-                  Income Total: <b class="text-emerald-500">${{ store.findIncomeWithThisLabel.reduce((sum, item) => sum + Number(item.amount), 0).toFixed(2) }}</b>
-               </h3>
-               <h3 class="text-1xl mb-2" v-if="store.findExpenseWithThisLabel.length">
-                  Expense Total: <b class="text-red-600">${{ store.findExpenseWithThisLabel.reduce((sum, item) => sum + Number(item.amount), 0).toFixed(2) }}</b>
-               </h3>
-
-               
+         <div class="text-center mt-10 block md:flex justify-center gap-36">
+            <h3 class="text-1xl mb-2" v-if="store.findIncomeWithThisLabel.length">
+               Income Total: <b class="text-emerald-500">${{ store.findIncomeWithThisLabel.reduce((sum, item) => sum + Number(item.amount), 0).toFixed(2) }}</b>
+            </h3>
+            <h3 class="text-1xl mb-2" v-if="store.findExpenseWithThisLabel.length">
+               Expense Total: <b class="text-red-600">${{ store.findExpenseWithThisLabel.reduce((sum, item) => sum + Number(item.amount), 0).toFixed(2) }}</b>
+            </h3>
          </div>
     </div>
 

@@ -8,6 +8,7 @@
       <ul v-if="store.AllLabels.length">
         <div v-for="label in store.AllLabels" :key="label.id" class="py-4 border-b border-gray-400 text-1xl">
          <li class="flex justify-between items-center content-center">
+        <span class="text-1xl font-medium grow  max-w-52 md:max-w-[85%]">{{ label.date }}</span>
          <div class="wrap-break-word text-1xl grow max-w-52 md:max-w-[85%]">
             <div>
                 <font-awesome-icon :icon="['fas', 'tag']" :class="store.isDarkMode == false ? 'text-gray-600' : ''"></font-awesome-icon>
