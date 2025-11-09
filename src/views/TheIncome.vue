@@ -17,7 +17,7 @@
                <span class="ml-1 cursor-pointer hover:underline" @click="store.goToLabelDetails(item)">{{ item.description }}</span> 
              </div>
          </div>
-            <span class="text-1xl font-medium grow max-w-28 md:max-w-64">${{ income.amount.toFixed(2) }}</span>
+            <span class="text-1xl font-medium grow">${{ income.amount.toFixed(2) }}</span>
             <span class="cursor-pointer hidden lg:block">
                   <font-awesome-icon @click="store.deleteIncome(income)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
                   <font-awesome-icon  @click="store.editedIncome(income)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
