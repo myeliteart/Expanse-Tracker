@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { defineStore } from 'pinia'
 import { useRouter, useRoute } from 'vue-router';
 import { useLocalStorage } from '@vueuse/core';
@@ -9,6 +9,10 @@ export const useTransectionsStore = defineStore('transections', () => {
   const expanseHistory = useLocalStorage('expanseHistory', [])
   const AllLabels = useLocalStorage('AllLabels', [])
    const selectedLabels = useLocalStorage('selectedLabels', [])
+
+  let FilteredincomeHistory = ref([]);
+  let FilteredExpenseHistory = ref([]);
+  let FilteredAllHistory = ref([]);
 
   const income = computed(() => {
     return incomeHistory.value.reduce((sum, i) => sum + Number(i.amount), 0).toFixed(2)
@@ -71,7 +75,7 @@ export const useTransectionsStore = defineStore('transections', () => {
 
    const searchIncome = ref('');
    const searchExpense = ref('');
-
+   const searchAll = ref('');
   // const filterNumericValue = (event) => {
   //    let value = event.target.value;
   //     value = value.replace(/[^0-9]/g, '');
@@ -127,23 +131,101 @@ export const useTransectionsStore = defineStore('transections', () => {
     router.push({name: 'labelsDetails', params: {id: label.description.toLowerCase().split(' ').join('-')}})
   }
 
-  const filteredTheIncome = computed(() => {
-    return incomeHistory.value.filter(i => i.description.toLowerCase().includes(searchIncome.value.toLocaleLowerCase()) || searchIncome.value == '')
+  // const filteredTheIncome = computed(() => {
+  //   return incomeHistory.value.filter(i => i.description.toLowerCase().includes(searchIncome.value.toLocaleLowerCase()) || searchIncome.value == '')
+  // })
+
+  //  const filteredTheExpense = computed(() => {
+  //   return expanseHistory.value.filter(e => e.description.toLowerCase().includes(searchExpense.value.toLocaleLowerCase()) || searchExpense.value == '')
+  // })
+
+  const searchAllIncomes = () => {
+      FilteredincomeHistory.value = incomeHistory.value.filter(i => i.description.toLowerCase().includes(searchIncome.value.toLocaleLowerCase()))
+      console.log('searchIncome:', searchIncome.value)
+      console.log('incomeHistory length:', incomeHistory.value.length)
+      console.log('filtered before:', FilteredincomeHistory.value)
+    }
+
+  watch(searchIncome, (newVal) => {
+    if(newVal == ''){
+       FilteredincomeHistory.value = [...incomeHistory.value]
+    }
   })
 
-   const filteredTheExpense = computed(() => {
-    return expanseHistory.value.filter(e => e.description.toLowerCase().includes(searchExpense.value.toLocaleLowerCase()) || searchExpense.value == '')
+  const searchAllExpenses = () => {
+      FilteredExpenseHistory.value = expanseHistory.value.filter(e => e.description.toLowerCase().includes(searchExpense.value.toLocaleLowerCase()))
+  }
+
+   watch(searchExpense, (newVal) => {
+    if(newVal == ''){
+       FilteredExpenseHistory.value = [...expanseHistory.value]
+    }
   })
 
   const findLabel = computed(() => {
     return AllLabels.value.find(lbl => lbl.description.toLowerCase().split(' ').join('-') == route.params.id);
   })
 
-  const findWithThisLabel = computed(() => {
-    const filteredIncome = incomeHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ))
-    const filteredExpanse = expanseHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ))
-    return [...filteredIncome, ...filteredExpanse]
+  const findWithThisLabel = () => {
+  const term = (searchAll.value || '').toString().trim().toLowerCase()
+
+  if (!route.params.id) {
+    const allItems = [...incomeHistory.value, ...expanseHistory.value]
+
+    if (!term) {
+      FilteredAllHistory.value = allItems
+    } else {
+      FilteredAllHistory.value = allItems.filter(itm =>
+        (itm.description || '').toLowerCase().includes(term)
+      )
+    }
+    return
+  }
+
+  const filteredIncome = incomeHistory.value.filter(itm =>
+    itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id)
+  )
+  const filteredExpanse = expanseHistory.value.filter(itm =>
+    itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id)
+  )
+
+  const withLabel = [...filteredIncome, ...filteredExpanse]
+
+  if (!term) {
+    FilteredAllHistory.value = withLabel
+  } else {
+    FilteredAllHistory.value = withLabel.filter(itm =>
+      (itm.description || '').toLowerCase().includes(term)
+    )
+  }
+}
+
+ watch(searchAll, (newVal) => {
+    if(newVal == ''){
+       FilteredAllHistory.value = [...incomeHistory.value, ...expanseHistory.value]
+    }
   })
+  // const findWithThisLabel = () => {
+  //   const term = (searchAll.value || '').toString().trim().toLowerCase()
+  //   if(!route.params.id) {
+  //       const allItems = [...incomeHistory.value, ...expanseHistory.value]
+  //     if(!term) {
+  //       FilteredAllHistory.value = allItems
+  //     } else {
+  //       FilteredAllHistory.value = allItems.filter(itm => itm.description.toLowerCase().includes(term))
+  //     }
+  //     return
+  //   } 
+  //   const filteredIncome = incomeHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ))
+  //   const filteredExpanse = expanseHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ))
+  //   const withLabel = [...filteredIncome, ...filteredExpanse]
+
+  //   if(!term) {
+  //     FilteredAllHistory.value = withLabel
+  //   } else {
+  //     FilteredAllHistory.value = withLabel.filter(itm => itm.description || '').toLowerCase().includes(term)
+  //   }
+  // }
 
   const findIncomeWithThisLabel = computed(() => {
     return incomeHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ));
@@ -153,6 +235,7 @@ export const useTransectionsStore = defineStore('transections', () => {
     return expanseHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ));
   })
 
+  
   const deleteIncome = (inc) => {
     modalDelete.value = inc
     mobileActions.value = null
@@ -207,6 +290,7 @@ export const useTransectionsStore = defineStore('transections', () => {
 
   const confirmDeletion = () => {
      incomeHistory.value = incomeHistory.value.filter(item => item.id !== modalDelete.value.id)
+     FilteredincomeHistory.value = [...incomeHistory.value]
     //  balance.value = balance.value - modalDelete.value.amount
     //  income.value = income.value - modalDelete.value.amount
      modalDelete.value = null;
@@ -214,6 +298,23 @@ export const useTransectionsStore = defineStore('transections', () => {
 
   const confirmDeletion2 = () => {
     expanseHistory.value = expanseHistory.value.filter(item => item.id !== modalDeleteE.value.id)
+    FilteredExpenseHistory.value = [...expanseHistory.value]
+    // balance.value = balance.value + modalDeleteE.value.amount
+    // expanse.value = expanse.value - modalDeleteE.value.amount
+    modalDeleteE.value = null;
+  }
+
+  const confirmDeletion3 = () => {
+    incomeHistory.value = incomeHistory.value.filter(item => item.id !== modalDelete.value.id)
+    findWithThisLabel()
+    // balance.value = balance.value + modalDeleteE.value.amount
+    // expanse.value = expanse.value - modalDeleteE.value.amount
+    modalDelete.value = null;
+  }
+  
+  const confirmDeletion4 = () => {
+    expanseHistory.value = expanseHistory.value.filter(item => item.id !== modalDelete.value.id)
+    findWithThisLabel()
     // balance.value = balance.value + modalDeleteE.value.amount
     // expanse.value = expanse.value - modalDeleteE.value.amount
     modalDeleteE.value = null;
@@ -232,14 +333,9 @@ export const useTransectionsStore = defineStore('transections', () => {
   }
 
 
-
-  // const formattedAmount = computed(() => {
-  //   incomeFields.value.amount = parseFloat().toFixed(2);
-  // })
-
   const toggleDark = () => {
     isDarkMode.value = !isDarkMode.value
   }
 
-  return { balance, income, expanse, findIncomeWithThisLabel, findExpenseWithThisLabel, filteredTheIncome, filteredTheExpense, searchIncome, searchExpense, actionsBoth, actionsLbl, deleteBoth, editedBoth, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
+  return { balance, income, expanse, findIncomeWithThisLabel, confirmDeletion3, confirmDeletion4, FilteredAllHistory, searchAll, searchAllIncomes, searchAllExpenses, FilteredExpenseHistory, FilteredincomeHistory, findExpenseWithThisLabel, searchIncome, searchExpense, actionsBoth, actionsLbl, deleteBoth, editedBoth, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
 })

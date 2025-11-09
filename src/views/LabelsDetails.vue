@@ -3,13 +3,16 @@
         <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
          <div class="block md:flex md:justify-between items-center content-center">
             <h1 class="text-3xl font-bold">{{ store.findLabel.description }}</h1>
-            <input v-model="store.searchIncome" type="search" :placeholder="`Search ${store.findLabel.description}`" class="w-full md:w-fit mt-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
+             <div class="flex items-center mt-2">
+               <input v-model="store.searchAll" @keyup.enter="store.findWithThisLabel" type="search" :placeholder="`Search ${store.findLabel.description}`" class=" w-full mr-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
+               <button @click="store.findWithThisLabel" type="submit" class="bg-black px-4 py-1 text-white rounded cursor-pointer hover:bg-gray-800">Search</button>
+            </div>
          </div>
         <hr class="mt-2 border-gray-400"></hr>
-        <p v-if="!store.findWithThisLabel.length" class="text-center pt-10">{{ store.findLabel.description }} is currently empty</p>
+        <p v-if="!store.FilteredAllHistory.length" class="text-center pt-10">{{ store.findLabel.description }} is currently empty</p>
 
-        <ul v-if="store.findWithThisLabel.length"> 
-        <div v-for="all in store.findWithThisLabel" :key="all.id" class="py-4 border-b border-gray-400 text-1xl">
+        <ul v-if="store.FilteredAllHistory.length"> 
+        <div v-for="all in store.FilteredAllHistory" :key="all.id" class="py-4 border-b border-gray-400 text-1xl">
          <li class="flex justify-between items-center content-center">
          <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ all.date }}</span>
 
@@ -72,7 +75,7 @@
          </div>
          <div class="flex justify-end mx-4 mb-4">
             <base-button @click="store.modalDelete = null" class="mr-2 cursor-pointer">Cancel</base-button>
-            <base-button @click="store.confirmDeletion" class="cursor-pointer" mode="btnActive">Delete</base-button>
+            <base-button @click="store.confirmDeletion3" class="cursor-pointer" mode="btnActive">Delete</base-button>
          </div>
    </base-modal>
 
@@ -83,7 +86,7 @@
       </div>
       <div class="flex justify-end mx-4 mb-4">
          <base-button @click="store.modalDeleteE = null" class="mr-2 cursor-pointer">Cancel</base-button>
-         <base-button @click="store.confirmDeletion2" class="cursor-pointer" mode="btnActive">Delete</base-button>
+         <base-button @click="store.confirmDeletion4" class="cursor-pointer" mode="btnActive">Delete</base-button>
       </div>
    </base-modal>
 </teleport>
@@ -91,6 +94,7 @@
 </template>
 
 <script setup>
+   import { onMounted } from 'vue';
      import { useRouter } from 'vue-router';
      const router = useRouter();
      import { useTransectionsStore } from '@/stores/transections'
@@ -98,4 +102,8 @@
 
      import EditIncome from '@/components/EditIncome.vue';
      import EditExpanse from '@/components/EditExpanse.vue';
+
+      onMounted(() => {
+        store.findWithThisLabel()
+      })
 </script>

@@ -4,15 +4,15 @@
        <div class="block md:flex md:justify-between items-center content-center">
          <h1 class="text-3xl font-bold">Income History</h1>
          <div class="flex items-center mt-2">
-            <input v-model="store.searchIncome" type="search" placeholder="Search Income History" class=" w-full mr-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
+            <input v-model.trim="store.searchIncome" @keyup.enter="store.searchAllIncomes" type="search" placeholder="Search Income History" class=" w-full mr-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
             <button @click="store.searchAllIncomes" type="submit" class="bg-black px-4 py-1 text-white rounded cursor-pointer hover:bg-gray-800">Search</button>
          </div>
    </div>
       
       <hr class="mt-2 border-gray-400"></hr>
-      <p v-if="!store.filteredTheIncome.length" class="text-center pt-10">Income History is currently empty</p>
-      <ul v-if="store.filteredTheIncome.length"> 
-        <div v-for="income in store.filteredTheIncome" :key="income.id" class="py-4 border-b border-gray-400 text-1xl">
+      <p v-if="!store.FilteredincomeHistory.length" class="text-center pt-10">Income History is currently empty</p>
+      <ul v-if="store.FilteredincomeHistory.length"> 
+        <div v-for="income in store.FilteredincomeHistory" :key="income.id" class="py-4 border-b border-gray-400 text-1xl">
          <li class="flex justify-between items-center content-center">
          <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ income.date }}</span>
          
@@ -70,10 +70,15 @@
 </template>
 
 <script setup>
+      import { onMounted } from 'vue';
      import { useRouter } from 'vue-router';
      const router = useRouter();
      import { useTransectionsStore } from '@/stores/transections'
      const store = useTransectionsStore();
 
      import EditIncome from '@/components/EditIncome.vue';
+
+     onMounted(() => {
+      store.FilteredincomeHistory = [...store.incomeHistory]
+     })
 </script>

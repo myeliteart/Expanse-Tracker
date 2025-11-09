@@ -8,12 +8,14 @@
       <section class="w-[90%] sm:max-w-[70%] max-w-[90%] grow mx-auto px-7 my-18 sm:my-26">
           <RouterView />
       </section>
+     
   </div>
-  
+   <the-footer></the-footer>
 </template>
 
 <script setup>
   import TheNav from './components/TheNav.vue';
+  import TheFooter from './components/TheFooter.vue';
   import { RouterView } from 'vue-router'
 
   import { useTransectionsStore } from '@/stores/transections'

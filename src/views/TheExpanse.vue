@@ -3,13 +3,16 @@
       <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
        <div class="block md:flex md:justify-between items-center content-center">
          <h1 class="text-3xl font-bold">Expense History</h1>
-         <input v-model="store.searchExpense" type="search" placeholder="Search Expense History" class="w-full md:w-fit mt-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
+         <div class="flex items-center mt-2">
+            <input v-model.trim="store.searchExpense" type="search" placeholder="Search Expense History" class=" w-full mr-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
+            <button @click="store.searchAllExpenses" type="submit" class="bg-black px-4 py-1 text-white rounded cursor-pointer  hover:bg-gray-800">Search</button>
+         </div>
       </div>
       <hr class="mt-2 border-gray-400"></hr>
-      <p v-if="!store.filteredTheExpense.length" class="text-center pt-10">Expense History is currently empty</p>
+      <p v-if="!store.FilteredExpenseHistory.length" class="text-center pt-10">Expense History is currently empty</p>
       
-   <ul v-if="store.filteredTheExpense.length">
-      <div v-for="expense in store.filteredTheExpense" :key="expense.id" class="py-4 border-b border-gray-400 text-1xl content-center">
+   <ul v-if="store.FilteredExpenseHistory.length">
+      <div v-for="expense in store.FilteredExpenseHistory" :key="expense.id" class="py-4 border-b border-gray-400 text-1xl content-center">
         <li class="flex justify-between items-center content-center">
           <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ expense.date }}</span>
          <div class="wrap-break-word text-1xl grow max-w-28 md:max-w-64">
@@ -65,6 +68,7 @@
 </template>
 
 <script setup>
+    import { onMounted } from 'vue'
      import { useRouter } from 'vue-router';
      const router = useRouter();
 
@@ -72,4 +76,8 @@
      const store = useTransectionsStore();
 
      import EditExpanse from '@/components/EditExpanse.vue';
+
+      onMounted(() => {
+         store.FilteredExpenseHistory = [...store.expanseHistory]
+      })
 </script>
