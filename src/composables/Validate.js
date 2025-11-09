@@ -23,7 +23,7 @@
         amount: Number(values.amount),
         lbl: store.selectedLabels,
         type: 'income',
-        date: new Date().toLocaleString()
+        date: new Date().toLocaleDateString()
         // date: date.toLocaleTimeString("en-us", options)
      }
       // store.balance += values.amount
@@ -40,7 +40,7 @@
         amount: Number(values.amount),
         lbl: store.selectedLabels,
         type: 'expense',
-        date: new Date().toLocaleString()
+        date: new Date().toLocaleDateString()
       }
 
       // store.balance -= values.amount

@@ -83,7 +83,7 @@ export const useTransectionsStore = defineStore('transections', () => {
         const hello = {
           id: AllLabels.value.length + 1,
           description: labelDescription.value,
-          date: new Date().toLocaleString()
+          date: new Date().toLocaleDateString()
         }
          AllLabels.value.unshift(hello);
          LabelModal.value = false;
