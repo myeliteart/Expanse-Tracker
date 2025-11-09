@@ -68,6 +68,7 @@ export const useTransectionsStore = defineStore('transections', () => {
   const isDarkMode = ref(false);
 
   const labelDescription = ref ('');
+
    const searchIncome = ref('');
    const searchExpense = ref('');
 
@@ -126,12 +127,20 @@ export const useTransectionsStore = defineStore('transections', () => {
     router.push({name: 'labelsDetails', params: {id: label.description.toLowerCase().split(' ').join('-')}})
   }
 
+  const filteredTheIncome = computed(() => {
+    return incomeHistory.value.filter(i => i.description.toLowerCase().includes(searchIncome.value.toLocaleLowerCase()) || searchIncome.value == '')
+  })
+
+   const filteredTheExpense = computed(() => {
+    return expanseHistory.value.filter(e => e.description.toLowerCase().includes(searchExpense.value.toLocaleLowerCase()) || searchExpense.value == '')
+  })
+
   const findLabel = computed(() => {
     return AllLabels.value.find(lbl => lbl.description.toLowerCase().split(' ').join('-') == route.params.id);
   })
 
   const findWithThisLabel = computed(() => {
-    const filteredIncome = incomeHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ));
+    const filteredIncome = incomeHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ))
     const filteredExpanse = expanseHistory.value.filter(itm => itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id ))
     return [...filteredIncome, ...filteredExpanse]
   })
@@ -232,5 +241,5 @@ export const useTransectionsStore = defineStore('transections', () => {
     isDarkMode.value = !isDarkMode.value
   }
 
-  return { balance, income, expanse, findIncomeWithThisLabel, findExpenseWithThisLabel, searchIncome, searchExpense, actionsBoth, actionsLbl, deleteBoth, editedBoth, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
+  return { balance, income, expanse, findIncomeWithThisLabel, findExpenseWithThisLabel, filteredTheIncome, filteredTheExpense, searchIncome, searchExpense, actionsBoth, actionsLbl, deleteBoth, editedBoth, findWithThisLabel, labelDescription, AllLabels, LabelModalExpanse, deleteLabel, findLabel, confirmLabelDeletion, editLabel, goToLabelDetails, labelsEditedFields, editLabelModal, DeleteLabelModal, isDarkMode, tabs, ExpModal, selectedLabels, LabelModal, navOpen, modal, incomeHistory, expanseHistory, mobileActions, modalDeleteE, incomeEditedFields, modalDelete, expanseEditedFields, editedIncome, editedExpanse, confirmDeletion, toggleDark, confirmDeletion2, deleteExpanse, deleteIncome, actions, createLabel, cancelLabel }
 })

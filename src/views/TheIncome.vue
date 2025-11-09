@@ -3,13 +3,13 @@
       <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
        <div class="block md:flex md:justify-between items-center content-center">
          <h1 class="text-3xl font-bold">Income History</h1>
-         <input type="search" placeholder="Search Income History" class="w-full md:w-fit mt-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
+         <input v-model="store.searchIncome" type="search" placeholder="Search Income History" class="w-full md:w-fit mt-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
       </div>
       
       <hr class="mt-2 border-gray-400"></hr>
-      <p v-if="!store.incomeHistory.length" class="text-center pt-10">Income History is currently empty</p>
-      <ul v-if="store.incomeHistory.length"> 
-        <div v-for="income in store.incomeHistory" :key="income.id" class="py-4 border-b border-gray-400 text-1xl">
+      <p v-if="!store.filteredTheIncome.length" class="text-center pt-10">Income History is currently empty</p>
+      <ul v-if="store.filteredTheIncome.length"> 
+        <div v-for="income in store.filteredTheIncome" :key="income.id" class="py-4 border-b border-gray-400 text-1xl">
          <li class="flex justify-between items-center content-center">
          <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ income.date }}</span>
          

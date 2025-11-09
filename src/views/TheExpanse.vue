@@ -3,13 +3,13 @@
       <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
        <div class="block md:flex md:justify-between items-center content-center">
          <h1 class="text-3xl font-bold">Expense History</h1>
-         <input type="search" placeholder="Search Expense History" class="w-full md:w-fit mt-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
+         <input v-model="store.searchExpense" type="search" placeholder="Search Expense History" class="w-full md:w-fit mt-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
       </div>
       <hr class="mt-2 border-gray-400"></hr>
-      <p v-if="!store.expanseHistory.length" class="text-center pt-10">Expense History is currently empty</p>
+      <p v-if="!store.filteredTheExpense.length" class="text-center pt-10">Expense History is currently empty</p>
       
-   <ul v-if="store.expanseHistory.length">
-      <div v-for="expense in store.expanseHistory" :key="expense.id" class="py-4 border-b border-gray-400 text-1xl content-center">
+   <ul v-if="store.filteredTheExpense.length">
+      <div v-for="expense in store.filteredTheExpense" :key="expense.id" class="py-4 border-b border-gray-400 text-1xl content-center">
         <li class="flex justify-between items-center content-center">
           <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ expense.date }}</span>
          <div class="wrap-break-word text-1xl grow max-w-28 md:max-w-64">
