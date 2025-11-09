@@ -15,7 +15,7 @@
                 <span class="ml-1 font-medium" :class="all.type ==  'income' ? 'text-emerald-500' : 'text-red-600'">{{ all.description }}</span>
             </div>
          </div>
-         <span class="text-1xl font-medium">${{ all.amount.toFixed(2) }}</span>
+         <span class="text-1xl font-medium grow">${{ all.amount.toFixed(2) }}</span>
 
             <span class="cursor-pointer hidden lg:block">
                 <font-awesome-icon @click="store.deleteBoth(all)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
