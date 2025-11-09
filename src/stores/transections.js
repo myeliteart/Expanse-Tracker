@@ -169,18 +169,18 @@ export const useTransectionsStore = defineStore('transections', () => {
   const findWithThisLabel = () => {
   const term = (searchAll.value || '').toString().trim().toLowerCase()
 
-  if (!route.params.id) {
-    const allItems = [...incomeHistory.value, ...expanseHistory.value]
+  // if (!route.params.id) {
+  //   const allItems = [...incomeHistory.value, ...expanseHistory.value]
 
-    if (!term) {
-      FilteredAllHistory.value = allItems
-    } else {
-      FilteredAllHistory.value = allItems.filter(itm =>
-        (itm.description || '').toLowerCase().includes(term)
-      )
-    }
-    return
-  }
+  //   if (!term) {
+  //     FilteredAllHistory.value = allItems
+  //   } else {
+  //     FilteredAllHistory.value = allItems.filter(itm =>
+  //       (itm.description || '').toLowerCase().includes(term)
+  //     )
+  //   }
+  //   return
+  // }
 
   const filteredIncome = incomeHistory.value.filter(itm =>
     itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id)
