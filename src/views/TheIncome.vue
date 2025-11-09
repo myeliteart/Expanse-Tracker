@@ -12,7 +12,7 @@
            
             <div class="font-medium">{{ income.description }}</div>
 
-             <div v-for="item in income.lbl" class="lg:grow-0 mt-1">
+             <div v-for="item in income.lbl" class="grow max-w-28 md:max-w-64 lg:grow-0 mt-1">
                <font-awesome-icon v-if="item" :icon="['fas', 'tag']" :class="store.isDarkMode == false ? 'text-gray-600' : ''"></font-awesome-icon>
                <span class="ml-1 cursor-pointer hover:underline" @click="store.goToLabelDetails(item)">{{ item.description }}</span> 
              </div>
