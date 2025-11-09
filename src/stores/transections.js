@@ -166,43 +166,59 @@ export const useTransectionsStore = defineStore('transections', () => {
     return AllLabels.value.find(lbl => lbl.description.toLowerCase().split(' ').join('-') == route.params.id);
   })
 
-  const findWithThisLabel = () => {
-  const term = (searchAll.value || '').toString().trim().toLowerCase()
+//   const findWithThisLabel = () => {
+//   if (!route.params.id) return
 
-  // if (!route.params.id) {
-  //   const allItems = [...incomeHistory.value, ...expanseHistory.value]
+//   const term = (searchAll.value || '').toString().trim().toLowerCase()
 
-  //   if (!term) {
-  //     FilteredAllHistory.value = allItems
-  //   } else {
-  //     FilteredAllHistory.value = allItems.filter(itm =>
-  //       (itm.description || '').toLowerCase().includes(term)
-  //     )
-  //   }
-  //   return
-  // }
+//   const filteredIncome = incomeHistory.value.filter(itm =>
+//     itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id)
+//   )
+//   const filteredExpanse = expanseHistory.value.filter(itm =>
+//     itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id)
+//   )
 
+//     let withLabel = [...filteredIncome, ...filteredExpanse]
+
+//     if (term) {
+//       withLabel = withLabel.filter(itm =>(itm.description || '').toLowerCase().includes(term))
+//     } 
+//       FilteredAllHistory.value = withLabel
+// }
+
+const findWithThisLabel = () => {
+  if (!route.params.id) return // safety check
+  console.log('route:', route.params.id)
+
+  const term = (searchAll.value || '').trim().toLowerCase()
+  const currentLabelSlug = route.params.id
+
+  // first: only items that have the current label
   const filteredIncome = incomeHistory.value.filter(itm =>
-    itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id)
+    itm.lbl.some(l => l.description.toLowerCase() === currentLabelSlug)
   )
+
   const filteredExpanse = expanseHistory.value.filter(itm =>
-    itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === route.params.id)
+    itm.lbl.some(l => l.description.toLowerCase().split(' ').join('-') === currentLabelSlug)
   )
 
-  const withLabel = [...filteredIncome, ...filteredExpanse]
+  let withLabel = [...filteredIncome, ...filteredExpanse]
 
-  if (!term) {
-    FilteredAllHistory.value = withLabel
-  } else {
-    FilteredAllHistory.value = withLabel.filter(itm =>
+  // second: apply search filter if searchAll has value
+  if (term) {
+    withLabel = withLabel.filter(itm =>
       (itm.description || '').toLowerCase().includes(term)
     )
   }
+
+  // finally, assign to your reactive array
+  FilteredAllHistory.value = withLabel
 }
+
 
  watch(searchAll, (newVal) => {
     if(newVal == ''){
-       FilteredAllHistory.value = [...incomeHistory.value, ...expanseHistory.value]
+      findWithThisLabel()
     }
   })
   // const findWithThisLabel = () => {
