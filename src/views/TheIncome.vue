@@ -3,7 +3,7 @@
       <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
       <div class="flex justify-between items-center content-center">
          <h1 class="text-3xl font-bold">Income History</h1>
-         <input type="search" placeholder="Search Income" class="border border-gray-400 rounded px-2 py-1 outline-0">
+         <input type="search" placeholder="Search Income History" class="border border-gray-400 rounded px-2 py-1 outline-0">
       </div>
       
       <hr class="mt-2 border-gray-400"></hr>
@@ -12,6 +12,7 @@
         <div v-for="income in store.incomeHistory" :key="income.id" class="py-4 border-b border-gray-400 text-1xl">
          <li class="flex justify-between items-center content-center">
          <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ income.date }}</span>
+         
          <div class="wrap-break-word text-1xl grow max-w-28 md:max-w-64">
            
             <div class="font-medium">{{ income.description }}</div>

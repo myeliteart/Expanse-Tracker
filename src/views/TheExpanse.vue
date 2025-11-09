@@ -3,7 +3,7 @@
       <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
       <div class="flex justify-between items-center content-center">
          <h1 class="text-3xl font-bold">Expense History</h1>
-         <input type="search" placeholder="Search Expense" class="border border-gray-400 rounded px-2 py-1 outline-0">
+         <input type="search" placeholder="Search Expense History" class="border border-gray-400 rounded px-2 py-1 outline-0">
       </div>
       <hr class="mt-2 border-gray-400"></hr>
       <p v-if="!store.expanseHistory.length" class="text-center pt-10">Expense History is currently empty</p>
