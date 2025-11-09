@@ -9,13 +9,14 @@
         <div v-for="all in store.findWithThisLabel" :key="all.id" class="py-4 border-b border-gray-400 text-1xl">
          <li class="flex justify-between items-center content-center">
          <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ all.date }}</span>
+         
         <div class="wrap-break-word text-1xl grow max-w-28 md:max-w-64">
             <div>
                 <font-awesome-icon :icon="['fas', 'tag']" :class="store.isDarkMode == false ? 'text-gray-600' : ''"></font-awesome-icon>
                 <span class="ml-1 font-medium" :class="all.type ==  'income' ? 'text-emerald-500' : 'text-red-600'">{{ all.description }}</span>
             </div>
          </div>
-         <span class="text-1xl font-medium grow">${{ all.amount.toFixed(2) }}</span>
+         <span class="text-1xl font-medium  grow max-w-28 md:max-w-64">${{ all.amount.toFixed(2) }}</span>
 
             <span class="cursor-pointer hidden lg:block">
                 <font-awesome-icon @click="store.deleteBoth(all)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 

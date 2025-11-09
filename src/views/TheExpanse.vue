@@ -18,7 +18,7 @@
              </div>
          </div>
 
-          <span class="text-1xl font-medium grow">${{ expense.amount.toFixed(2) }}</span>
+          <span class="text-1xl font-medium grow max-w-28 md:max-w-64">${{ expense.amount.toFixed(2) }}</span>
             <span class="cursor-pointer hidden lg:block">
                   <font-awesome-icon @click="store.deleteExpanse(expense)" :icon="['fas', 'trash']" class="mr-3 md:mr-5" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
                   <font-awesome-icon  @click="store.editedExpanse(expense)" :icon="['fas', 'pencil']" :class="store.isDarkMode ==  false ? 'text-gray-500' : 'text-white'"></font-awesome-icon> 
