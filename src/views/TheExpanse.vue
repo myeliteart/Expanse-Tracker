@@ -9,7 +9,7 @@
       <div v-for="expense in store.expanseHistory" :key="expense.id" class="py-4 border-b border-gray-400 text-1xl content-center">
         <li class="flex justify-between items-center content-center">
           <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ expense.date }}</span>
-         <div class="wrap-break-word text-1xl grow max-w-20 md:max-w-64">
+         <div class="wrap-break-word text-1xl grow max-w-28 md:max-w-64">
             <div class="font-medium">{{ expense.description }}</div>
 
              <div v-for="item in expense.lbl" class="lg:grow-0 mt-1">

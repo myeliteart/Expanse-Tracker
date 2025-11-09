@@ -8,7 +8,7 @@
         <div v-for="income in store.incomeHistory" :key="income.id" class="py-4 border-b border-gray-400 text-1xl">
          <li class="flex justify-between items-center content-center">
          <span class="text-1xl font-medium grow max-w-28 md:max-w-64">{{ income.date }}</span>
-         <div class="wrap-break-word text-1xl grow max-w-20 md:max-w-64">
+         <div class="wrap-break-word text-1xl grow max-w-28 md:max-w-64">
            
             <div class="font-medium">{{ income.description }}</div>
 
