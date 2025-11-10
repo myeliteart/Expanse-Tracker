@@ -21,7 +21,6 @@
         store.incomeHistory[index].description = store.incomeEditedFields.description
         store.incomeHistory[index].amount = store.incomeEditedFields.amount
         store.incomeHistory[index].lbl = store.incomeEditedFields.lbl
-        store.incomeHistory[index].date = new Date().toLocaleDateString()
         // store.income += newAmount
         // store.balance += newAmount
 
@@ -47,7 +46,6 @@
           store.expanseHistory[index].description = store.expanseEditedFields.description
           store.expanseHistory[index].amount = newAmount
           store.expanseHistory[index].lbl = store.expanseEditedFields.lbl
-          store.expanseHistory[index].date = new Date().toLocaleDateString()
 
           // store.expanse += newAmount
           // store.balance -= newAmount
@@ -60,11 +58,9 @@
           if (store.labelsEditedFields.description !== '') {       
           const indexAll = store.AllLabels.findIndex(itm => itm.id == store.labelsEditedFields.id)
           store.AllLabels[indexAll].description = store.labelsEditedFields.description
-          store.AllLabels[indexAll].date = new Date().toLocaleDateString()
 
           const indexSelected = store.selectedLabels.findIndex(itm => itm == store.labelsEditedFields)
           store.selectedLabels[indexSelected] = store.labelsEditedFields.description
-          store.selectedLabels[indexSelected] = new Date().toLocaleDateString()
 
           store.editLabelModal = null
         }
