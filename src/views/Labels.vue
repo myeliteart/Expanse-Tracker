@@ -31,10 +31,10 @@
                     </div>
                </span>
             </div>
-        </li>
+          </li>
         </div>
         </ul>
-        <div class="justify-center text-center mt-6">
+        <div class="justify-center text-center mt-5">
          <button @click="store.LabelModal = true" class="border border-gray-400 w-fit rounded py-2 px-3 cursor-pointer">
             <font-awesome-icon :icon="['fas', 'plus']" :class="store.isDarkMode == false ? 'text-gray-600' : 'text-white'"></font-awesome-icon> 
             New Label

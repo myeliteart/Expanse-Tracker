@@ -2,10 +2,10 @@
      <div class="w-full">
         <font-awesome-icon class="cursor-pointer mb-2" :icon="['fas', 'arrow-left']" @click="router.back"></font-awesome-icon>
          <div class="block md:flex md:justify-between items-center content-center">
-            <h1 class="text-3xl font-bold">{{ store.findLabel.description }}</h1>
-             <div class="flex items-center mt-2">
+            <h1 class="text-3xl font-bold mb-2 md:mb-0">{{ store.findLabel.description }}</h1>
+             <div class="flex items-center my-1">
                <input v-model="store.searchAll" @keyup.enter="store.findWithThisLabel" type="search" :placeholder="`Search ${store.findLabel.description}`" class=" w-full mr-2 md:mt-0 border border-gray-400 rounded px-2 py-1 outline-0">
-               <button @click="store.findWithThisLabel" type="submit" class="bg-black px-4 py-1 text-white rounded cursor-pointer hover:bg-gray-800">Search</button>
+               <button @click="store.findWithThisLabel" type="submit" :class="store.isDarkMode == false ? 'bg-black text-white  hover:bg-gray-800' : 'bg-white text-black hover:bg-gray-200'" class="px-4 py-1 rounded cursor-pointer">Search</button>
             </div>
          </div>
         <hr class="mt-2 border-gray-400"></hr>
