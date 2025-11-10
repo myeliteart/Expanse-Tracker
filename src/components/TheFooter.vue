@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-300 py-4 px-3">
+    <div class="bg-gray-200 py-4 px-4">
         &copy; 2025 | Expense Tracker
     </div>
 </template>
