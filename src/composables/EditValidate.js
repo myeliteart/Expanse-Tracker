@@ -21,6 +21,7 @@
         store.incomeHistory[index].description = store.incomeEditedFields.description
         store.incomeHistory[index].amount = store.incomeEditedFields.amount
         store.incomeHistory[index].lbl = store.incomeEditedFields.lbl
+        store.findWithThisLabel()
         // store.income += newAmount
         // store.balance += newAmount
 
@@ -46,7 +47,7 @@
           store.expanseHistory[index].description = store.expanseEditedFields.description
           store.expanseHistory[index].amount = newAmount
           store.expanseHistory[index].lbl = store.expanseEditedFields.lbl
-
+           store.findWithThisLabel()
           // store.expanse += newAmount
           // store.balance -= newAmount
 
